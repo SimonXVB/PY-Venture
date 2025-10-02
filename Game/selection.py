@@ -6,7 +6,7 @@ class Select:
         Initialize a new selection instance with specified options
         """
         self.options: list[dict[str, str]] = options
-        self.window = curses.newwin(len(self.options) + 2, len(max(self.options, key=lambda x: len(x["text"]))["text"]) + 6, 3, 0)
+        self.window = curses.newwin(len(self.options) + 2, len(max(self.options, key=lambda x: len(x["text"]))["text"]) + 6, 8, 4)
         self.stdscr = stdscr
         self.current_selection = 0
 

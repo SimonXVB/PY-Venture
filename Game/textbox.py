@@ -1,10 +1,9 @@
 import curses
 
 class Textbox:
-    def __init__(self, stdscr: curses.window, text: str) -> None:
+    def __init__(self, text: str) -> None:
         self.text = text
-        self.stdscr = stdscr
-        self.window = curses.newwin(3, len(self.text) + 4, 0, 0)
+        self.window = curses.newwin(3, len(self.text) + 4, 4, 4)
 
         self.update()
 
