@@ -5,23 +5,23 @@ class Select:
         """
         Initialize a new selection instance with specified options
         """
-
         self.options: list[dict[str, str]] = options
+        self.window = curses.newwin(len(self.options) + 2, len(max(self.options, key=lambda x: len(x["text"]))["text"]) + 6, 3, 0)
         self.stdscr = stdscr
-        self.window = curses.newwin(5, 30, 0, 0)
         self.current_selection = 0
 
         self.update()
 
     def set_options(self, options: list[dict[str, str]]):
         self.options = options
+        self.update()
     
     def get_current_selection(self) -> int:
         return self.current_selection
 
     def select(self):
         """
-        Outputs a selection interface and returns selected option when ENTER key is hit
+        Enables selection and returns selected option when ENTER key is hit
         """
         self.update()
 
@@ -36,6 +36,7 @@ class Select:
 
                 self.update()
             elif input == curses.KEY_UP:
+
                 if self.current_selection - 1 < 0:
                     self.current_selection = len(self.options) - 1
                 else:
@@ -55,9 +56,8 @@ class Select:
         self.window.border(0, 0, 0, 0, 0, 0, 0, 0)
 
         for i, el in enumerate(self.options):
-            if i == self.current_selection:
-                self.window.addstr("* " + el["text"] + "\n")
-            else:
-                self.window.addstr("  " + el["text"] + "\n")
+            prefix = "-> " if i == self.current_selection else "  "
+
+            self.window.addstr(i + 1, 1, prefix + el["text"])
 
         self.window.refresh()

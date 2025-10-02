@@ -1,14 +1,16 @@
 import curses
 from curses import wrapper
 from selection import Select
+from textbox import Textbox
 
 def main(stdscr: curses.window):
     stdscr.refresh()
+    stdscr.scrollok(True)
     curses.curs_set(0)
 
     options = [
         {
-            "text": "1asdhsdjkfhshdfsdf",
+            "text": "1asdhsdjkfhshdfsdfgdfghdkfh",
             "action": "do"
         },
         {
@@ -21,8 +23,12 @@ def main(stdscr: curses.window):
         }
     ]
 
+    textbox = Textbox(stdscr, "Hello")
     select = Select(options, stdscr)
-    sel = select.select()
-    print(sel)
+
+    while True:
+        sel = select.select()
+        textbox.set_text(sel["text"])
+    
 
 wrapper(main)
