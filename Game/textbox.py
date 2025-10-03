@@ -2,28 +2,26 @@ import curses
 
 class Textbox:
     def __init__(self, text: str) -> None:
-        self.text = text
-        self.window = curses.newwin(3, len(self.text) + 4, 4, 4)
+        """
+        Initialize and display a new textbox with specified text
+        """
 
-        self.update()
+        self.text = text
+        self.window = curses.newwin(2, 46, 15, 2)
+
+        self._update()
 
     def set_text(self, text: str):
         self.text = text
-        self.update()
+        self._update()
 
     def get_text(self):
         return self.text
     
-    def update(self):
+    def _update(self):
         """
         Update textbox
         """
-        self.window.erase()
-        self.window.refresh()
-
-        self.window.resize(3, len(self.text) + 4)
-
-        self.window.addstr(1, 2, self.text)
-        self.window.border(0, 0, 0, 0, 0, 0, 0, 0)
-    
+        self.window.clear()
+        self.window.addstr(0, 1, self.text)
         self.window.refresh()
