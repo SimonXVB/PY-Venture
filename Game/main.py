@@ -1,7 +1,9 @@
 import curses
 from curses import wrapper
-from selection import Select
+from screen import Screen
 from textbox import Textbox
+from selection import Select
+from input import Input
 
 options = [
     {
@@ -17,6 +19,20 @@ options = [
         "action": "do3"
     }
 ]
+
+content = r"""XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXX(0>XXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXX//\XXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXV_/_XXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"""
 
 def init_ui():
     """
@@ -37,16 +53,20 @@ def init_ui():
     text_win.refresh()
     interact_win.refresh()
 
+print(len("dshkhsdfkksdfhbdcuusssssssssssssssssssssssss"))
+
 def main(stdscr: curses.window):
     stdscr.refresh()
     curses.curs_set(0)
 
     init_ui()
 
-    textbox = Textbox("Hello")
-    select = Select(options, stdscr)
+    Screen(content)
+    tex = Textbox("Hello")
+    Select(options, stdscr)
+    inp = Input("Recall your name", stdscr)
 
     while True:
-        sel = select.select()
-        textbox.set_text(sel["text"])
+        val = inp.enable_input()
+        tex.set_text(val)
 wrapper(main)

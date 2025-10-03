@@ -9,19 +9,20 @@ class Textbox:
         self.text = text
         self.window = curses.newwin(2, 46, 15, 2)
 
-        self._update()
+        self.update()
 
     def set_text(self, text: str):
         self.text = text
-        self._update()
+        self.update()
 
     def get_text(self):
         return self.text
     
-    def _update(self):
+    def update(self):
         """
-        Update textbox
+        Update textbox window
         """
+
         self.window.clear()
         self.window.addstr(0, 1, self.text)
         self.window.refresh()

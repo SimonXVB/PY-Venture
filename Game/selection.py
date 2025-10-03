@@ -11,21 +11,20 @@ class Select:
         self.options: list[dict[str, str]] = options
         self.current_selection = 0
 
-        self._update()
-
     def set_options(self, options: list[dict[str, str]]):
         self.options = options
-        self._update()
+        self.update()
     
     def get_current_selection(self) -> int:
         return self.current_selection
 
-    def select(self):
+    def enable_selection(self):
         """
-        Enables selection and returns selected option when ENTER key is hit
+        Enables and displays selection window. 
+        Returns selected option when ENTER key is pressed.
         """
 
-        self._update()
+        self.update()
 
         while True:
             input: int = self.stdscr.getch()
@@ -36,7 +35,7 @@ class Select:
                 else:
                     self.current_selection = self.current_selection + 1
 
-                self._update()
+                self.update()
             elif input == curses.KEY_UP:
 
                 if self.current_selection - 1 < 0:
@@ -44,12 +43,12 @@ class Select:
                 else:
                     self.current_selection = self.current_selection - 1
 
-                self._update()
-            elif input == curses.KEY_ENTER or input == 10 or input == 13:
+                self.update()
+            elif input == 10 or input == 13:
                 return self.options[self.current_selection]
             
 
-    def _update(self):
+    def update(self):
         """
         Update selection window
         """
