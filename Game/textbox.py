@@ -18,6 +18,10 @@ class Textbox:
     def get_text(self):
         return self.text
     
+    def hide_textbox(self):
+        self.window.clear()
+        self.window.refresh()
+    
     def update(self):
         """
         Update textbox window

@@ -11,6 +11,10 @@ class Screen:
         self.content = content
         self.update()
 
+    def hide_screen(self):
+        self.window.clear()
+        self.window.refresh()
+
     def update(self):
         """
         Update screen window

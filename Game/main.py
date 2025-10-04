@@ -36,10 +36,9 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"""
 
 def init_ui():
     """
-    Initialize UI
+    Initialize general UI window
     """
 
-    # Create general UI window
     # 25 Lines, 50 Columns
     wrapper_win = curses.newwin(25, 50, 0, 0)
     text_win = curses.newwin(4, 48, 14, 1)
@@ -52,8 +51,6 @@ def init_ui():
     wrapper_win.refresh()
     text_win.refresh()
     interact_win.refresh()
-
-print(len("dshkhsdfkksdfhbdcuusssssssssssssssssssssssss"))
 
 def main(stdscr: curses.window):
     stdscr.refresh()

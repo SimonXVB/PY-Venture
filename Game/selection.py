@@ -47,6 +47,9 @@ class Select:
             elif input == 10 or input == 13:
                 return self.options[self.current_selection]
             
+    def hide_selection(self):
+        self.window.clear()
+        self.window.refresh()
 
     def update(self):
         """
