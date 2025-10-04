@@ -8,7 +8,7 @@ from input import Input
 options = [
     {
         "text": "opt1",
-        "action": "do"
+        "action": "do1"
     },
     {
         "text": "opt2",
@@ -36,9 +36,10 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"""
 
 def init_ui():
     """
-    Initialize general UI window
+    Initialize UI
     """
 
+    # Create general UI window
     # 25 Lines, 50 Columns
     wrapper_win = curses.newwin(25, 50, 0, 0)
     text_win = curses.newwin(4, 48, 14, 1)
@@ -61,7 +62,7 @@ def main(stdscr: curses.window):
     Screen(content)
     tex = Textbox("Hello")
     Select(options, stdscr)
-    inp = Input("Recall your name", stdscr)
+    inp = Input("Test", stdscr)
 
     while True:
         val = inp.enable_input()

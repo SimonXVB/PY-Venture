@@ -29,7 +29,7 @@ class Input:
                     self.input.pop()
                     self.update()
             elif input <= 255:
-                if len(self.input) <= 44:
+                if len(self.input) <= 45:
                     self.input.append(input)
                     self.update()
 
